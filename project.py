@@ -61,7 +61,11 @@ class Page:
             case 'home':
                 return HomePage()
             case 'view':
-                return ViewChecklists()
+                no_checklists = len(list_files('./db')) < 1
+                if no_checklists:
+                    return NoChecklists()
+                else:
+                    return ViewChecklists()
             case 'new checklist':
                 return CreateChecklist()
             case 'new template':
@@ -144,10 +148,10 @@ class ViewChecklists(Page):
         self.files_len = len(self.files)
         self.templates_dao = Dao(Db(f'{self.path}/templates.csv'))
 
+
         super().__init__(height=(self.files_len+2) * 2 + 4,
                          options=[f"Select a checklist [n°]", "Delete a checklist [D]", "Return to HomePage [H]"],
                          top_content=Align.center(Panel(view_checklists_table(self.files), border_style="grey53")))
-
 
     def handle_page_input(self, choice):
 
@@ -155,9 +159,7 @@ class ViewChecklists(Page):
             return HomePage()
 
         if choice == 'd':
-            ###################
             prompt = Text.assemble(Text.from_markup('Select checklist to [red]Delete[/red] '), Text("[n°]", style="magenta"))
-            #prompt = Text.from_markup('Select checklist to red]Delete[/red]')
             num_to_delete = Prompt.ask(prompt)
             if num_to_delete == 'cancel':
                 return self
