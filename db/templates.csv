@@ -1,0 +1,7 @@
+Templates
+id,name,columns
+TID01,basic to-do's,task(@TEXT)-completed(@DONE)
+TID02,multi-day to-do's,task(@TEXT)-due date(@DUEDATE)-completed(@DONE)
+TID03,work tasks,task(@TEXT)-due date(@DUEDATE)-status(@STATUS)-priority(@PRIORITY)
+TID04,books to read,title(@TITLE)-author(@TITLE)-started(@SDATE)-finished(@FDATE)
+TID05,movies to watch,title(@TITLE)-director(@TITLE)-genre(@TEXT)-my rate(@RATING5)

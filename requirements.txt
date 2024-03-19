@@ -1,0 +1,5 @@
+rich
+pyfiglet
+titlecase
+pytest
+pytest-mock
